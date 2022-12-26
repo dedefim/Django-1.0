@@ -1,10 +1,3 @@
-
-from django.contrib import admin
-from django.urls import path
-
-
-urlpatters = [
-    path("admin/", admin.site.urls),
-    path("", views.hello_world),
-    path("<str:word>/", views.check_kwargs),
-]
+from blog import views
+from django.conf.urls import url
+urlpatterns = [url(r'', views.index, name='index')]
