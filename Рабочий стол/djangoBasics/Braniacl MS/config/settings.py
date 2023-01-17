@@ -31,9 +31,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "markdownify.apps.MarkdownifyConfig",
+    "social_django",
     "mainapp",
     "authapp",
-    "social_django",
+    "crispy_forms",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -125,3 +126,4 @@ AUTHENTICATION_BACKENDS = (
     "social_core.backends.github.GithubOAuth2",
     "django.contrib.auth.backends.ModelBackend",
 )
+CRISPY_TEMPLATE_PACK = "bootstrap4"
