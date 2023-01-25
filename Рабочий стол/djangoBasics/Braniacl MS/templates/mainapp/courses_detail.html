@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
-{% load static markdownify crispy_forms_tags %}
+% extends 'base.html' %}
+{% load static markdownify crispy_forms_tags cache %}
 {% block title %}
 {{ course_object.name }}
 {% endblock title %}
@@ -29,7 +29,6 @@
         </div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-4 order-1 order-md-2">
-
         <div class="row h-100">
             <div class="col-12 align-self-start">
                 <img class="w-100" src="{% static course_object.cover %}">
@@ -56,6 +55,7 @@
     </div>
 </div>
 <div class="accordion" id="accordionLessons">
+    {% cache 300 lessons %}
     {% for item in lessons %}
     <div class="card">
         <div class="card-header" id="headLessonPk{{ item.pk }}">
@@ -66,7 +66,7 @@
                 </button>
             </h2>
         </div>
-        <div id="collapse{{ item.pk }}" class="collapse" aria-labelledby="headLessonPk{{ item.pk }}" © geekbrains.ru 87
+        <div id="collapse{{ item.pk }}" class="collapse" aria-labelledby="headLessonPk{{ item.pk }}"
             data-parent="#accordionLessons">
             <div class="card-body">
                 <div class="row justify-content-center">
@@ -85,6 +85,7 @@
         </div>
     </div>
     {% endfor %}
+    {% endcache %}
 </div>
 <h3>Отзывы</h3>
 <div id="feedback_list">
@@ -106,7 +107,6 @@
             курсу</h6>
         <p class="card-text">
         <form action="{% url 'mainapp:course_feedback' %}" method="POST" id="feedbackForm">
-
             {% csrf_token %}
             {{ feedback_form|crispy }}
         </form>
@@ -135,4 +135,4 @@
         {% endif %}
     });
 </script>
-{% endblock js %}
+{% endblock js %

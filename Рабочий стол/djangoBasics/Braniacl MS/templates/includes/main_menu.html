@@ -14,7 +14,6 @@
 'mainapp:news' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'mainapp:news' %}">Новости</a>
                 </li>
-
                 <li class="nav-item {% if request.resolver_match.view_name ==
 'mainapp:courses' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'mainapp:courses' %}">Курсы</a>
@@ -31,10 +30,12 @@
                             профиль</a>
                         <a class="dropdown-item" href="#">Мои курсы</a>
                         <div class="dropdown-divider"></div>
+
                         <a class="dropdown-item" href="#">Модерация</a>
                         {% if user.is_superuser %}
-                        <a class="dropdown-item" href="{% url 'admin:index' %}" target="_black">Административный
+                        <a class="dropdown-item" href="{% url 'admin:index' %}" target="_blank">Административный
                             раздел</a>
+                        <a class="dropdown-item" href="{% url 'mainapp:log_view' %}" target="_blank">Лог</a>
                         {% endif %}
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'authapp:logout' %}">Выход</a>
@@ -52,6 +53,5 @@
             </ul>
             <span><a href="#">󰐮</a> <i class="fas fa-grip-lines-vertical"></i> <a href="#">󰏅</a></span>
         </div>
-
     </div>
 </nav>
