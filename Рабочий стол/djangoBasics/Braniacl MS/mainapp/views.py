@@ -243,11 +243,11 @@ class LogView(TemplateView):
 
             for i, line in enumerate(log_file):
                 if i == 1000:  # first 1000 lines
-                    break
+                break
             log_slice.insert(0, line)  # append at start
 
         context["log"] = "".join(log_slice)
-        return context
+    return context
 
 
 class LogDownloadView(UserPassesTestMixin, View):
